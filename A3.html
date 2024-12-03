@@ -13,6 +13,31 @@
         <h1>UOB student nationality</h1>
     </header>
 
+
+    <div class="container">
+        <!-- Error message placeholder (will be shown if there is an error fetching data) -->
+        <div id="errorMessage" class="error" style="display: none;"></div>
+        <table id="studentDataTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Semester</th>
+                    <th>Program</th>
+                    <th>Nationality</th>
+                    <th>College</th>
+                    <th>Number of Students</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+                <!-- Data  will be inserted here -->
+
+
+            </tbody>
+        </table>
+    </div>
+
+
     <script>
         // Set the current year dynamically in the footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -20,10 +45,10 @@
         const apiUrl = "https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20%22IT%22%20AND%20the_programs%20like%20%22bachelor%22&limit=100";
 
 
-         // Function to fetch data from the API and update the table
-         async function fetchData() {
-              try {
-                
+        // Function to fetch data from the API and update the table
+        async function fetchData() {
+            try {
+
                 const response = await fetch(apiUrl);
 
                 // If the response is not OK (e.g., 404 or 500), throw an error
@@ -84,12 +109,10 @@
                 errorMessage.style.display = 'block';
             }
         }
+
+        // Call the fetchData function
+        fetchData();
     </script>
-
-
-
-
-
 
     <!-- Footer  -->
     <footer>
