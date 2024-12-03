@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>UOB student nationality</title>
 </head>
+
 <body>
-    
+
+    <header>
+        <h1>UOB student nationality</h1>
+    </header>
+
+    <script>
+        // Set the current year dynamically in the footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        // API URL 
+        const apiUrl = "https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20%22IT%22%20AND%20the_programs%20like%20%22bachelor%22&limit=100";
+
+    </script>
+
+
+
+
+
+
+    <!-- Footer  -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Students Data Portal. Data provided by
+            <a href="https://data.gov.bh" target="_blank" rel="noopener noreferrer">
+                Bahrain Open Data Portal
+            </a>.
+        </p>
+    </footer>
+
 </body>
+
 </html>
