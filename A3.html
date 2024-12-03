@@ -19,6 +19,71 @@
         // API URL 
         const apiUrl = "https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20%22IT%22%20AND%20the_programs%20like%20%22bachelor%22&limit=100";
 
+
+         // Function to fetch data from the API and update the table
+         async function fetchData() {
+              try {
+                
+                const response = await fetch(apiUrl);
+
+                // If the response is not OK (e.g., 404 or 500), throw an error
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data from API.");
+                }
+
+                const data = await response.json();
+                const records = data.results || [];
+
+                if (records.length === 0) {
+                    throw new Error("No data found.");
+                }
+
+
+                const tableBody = document.getElementById('tableBody');
+
+                // Iterate over the records and create rows for the table
+                records.forEach(record => {
+                    const row = document.createElement('tr');
+
+                    const year = document.createElement('td');
+                    year.textContent = record.year || 'N/A';
+                    row.appendChild(year);
+
+                    const semester = document.createElement('td');
+                    semester.textContent = record.semester || 'N/A';
+                    row.appendChild(semester);
+
+                    const program = document.createElement('td');
+                    program.textContent = record.the_programs || 'N/A';
+                    row.appendChild(program);
+
+                    const nationality = document.createElement('td');
+                    nationality.textContent = record.nationality || 'N/A';
+                    row.appendChild(nationality);
+
+                    const college = document.createElement('td');
+                    college.textContent = record.colleges || 'N/A';
+                    row.appendChild(college);
+
+                    const numberOfStudents = document.createElement('td');
+                    numberOfStudents.textContent = record.number_of_students || 'N/A';
+                    row.appendChild(numberOfStudents);
+
+
+                    tableBody.appendChild(row);
+                });
+
+                // Display the table once data has been populated
+                document.getElementById('studentDataTable').style.display = 'table';
+            }
+
+            catch (error) {
+                // If there is an error, display it in the error message div
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = `Error: ${error.message}`;
+                errorMessage.style.display = 'block';
+            }
+        }
     </script>
 
 
