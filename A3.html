@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UOB Student Nationality</title>
     <style>
-        /* General styles for layout and appearance */
+       
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +20,7 @@
             line-height: 1.6;
         }
 
-        /* Styling for header and footer */
+       
         header,
         footer {
             background: #4CAF50;
@@ -35,14 +35,14 @@
             font-size: 1.5rem;
         }
 
-        /* Styling for container to center the content */
+     
         .container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 20px;
         }
 
-        /* Styling for the table */
+        
         table {
             width: 100%;
             border-collapse: collapse;
@@ -67,17 +67,16 @@
             font-weight: bold;
         }
 
-        /* Styling for alternating row colors */
+       
         table tbody tr:nth-child(even) {
             background-color: #f9f9f9;
         }
 
-        /* Hover effect for rows */
         table tbody tr:hover {
             background-color: #f1f1f1;
         }
 
-        /* Styling for error message */
+        
         .error {
             color: #D32F2F;
             background: #FFCDD2;
@@ -96,7 +95,7 @@
             font-size: 15px;
         }
 
-        /* Responsive styling for small screens */
+       
         @media (max-width: 768px) {
             table th,
             table td {
@@ -114,7 +113,7 @@
     </header>
 
     <div class="container">
-        <!-- Error message placeholder (will be shown if there is an error fetching data) -->
+        
         <div id="errorMessage" class="error" style="display: none;"></div>
         <table id="studentDataTable" style="display: none;">
             <thead>
@@ -128,11 +127,11 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Data  will be inserted here -->
+              
             </tbody>
         </table>
     </div>
-    <!-- Footer -->
+    
     <footer>
         <p>&copy; <span id="currentYear"></span> Students Data Portal. Data provided by
             <a href="https://data.gov.bh" target="_blank" rel="noopener noreferrer">
@@ -142,17 +141,17 @@
     </footer>
 
     <script>
-        // Set the current year dynamically in the footer
+        
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        // API URL 
+      
         const apiUrl = "https://data.gov.bh/api/explore/v2.1/catalog/datasets/01-statistics-of-students-nationalities_updated/records?where=colleges%20like%20%22IT%22%20AND%20the_programs%20like%20%22bachelor%22&limit=100";
 
-        // Function to fetch data from the API and update the table
+   
         async function fetchData() {
             try {
                 const response = await fetch(apiUrl);
 
-                // If the response is not OK (e.g., 404 or 500), throw an error
+                
                 if (!response.ok) {
                     throw new Error("Failed to fetch data from API.");
                 }
@@ -166,7 +165,7 @@
 
                 const tableBody = document.getElementById('tableBody');
 
-                // Iterate over the records and create rows for the table
+             
                 records.forEach(record => {
                     const row = document.createElement('tr');
 
@@ -197,17 +196,16 @@
                     tableBody.appendChild(row);
                 });
 
-                // Display the table once data has been populated
                 document.getElementById('studentDataTable').style.display = 'table';
             } catch (error) {
-                // If there is an error, display it in the error message div
+         
                 const errorMessage = document.getElementById('errorMessage');
                 errorMessage.textContent = `Error: ${error.message}`;
                 errorMessage.style.display = 'block';
             }
         }
 
-        // Call the fetchData function
+       
         fetchData();
     </script>
 
